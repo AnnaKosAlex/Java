@@ -55,7 +55,7 @@ public class TikTakToe {
             vertical = true;
             for (int ver = 0; ver < 3; ver++) {
                 horisontal &= (field[hor][ver] == sign);
-                vertical &= (field[hor][ver] == sign);
+                vertical &= (field[ver][hor] == sign);
             }
             if (horisontal || vertical) return true;
         }
