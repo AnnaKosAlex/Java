@@ -14,7 +14,8 @@ public class WorkersArray {
             if (workers[i].getAge() > 40){
                 System.out.println(workers[i].toString());
             }
-
         }
     }
+
+
 }

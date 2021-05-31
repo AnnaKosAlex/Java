@@ -77,4 +77,15 @@ public class Worker {
                 name, position, email, number, wage, age);
     }
 
+    @Override
+    public String toString() {
+        return "Worker{" +
+                "name='" + name + '\'' +
+                ", position='" + position + '\'' +
+                ", email='" + email + '\'' +
+                ", number='" + number + '\'' +
+                ", wage=" + wage +
+                ", age=" + age +
+                '}';
+    }
 }
