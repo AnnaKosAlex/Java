@@ -6,9 +6,24 @@ import LevelTwo.Lesson2_1.Lets.Wall;
 public class Robot implements Entities {
 
     private String name;
+    private int distance;
+    private int height;
 
-    Wall wall = new Wall();
-    RunningTrack track = new RunningTrack();
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    public int getDistance() {
+        return distance;
+    }
+
+    public void setDistance(int distance) {
+        this.distance = distance;
+    }
 
     public String getName() {
         return name;
@@ -19,28 +34,25 @@ public class Robot implements Entities {
     }
 
     public Robot(){
-
     }
 
     public Robot(String name) {
         this.name = name;
     }
 
-    @Override
-    public boolean doRun(int distance) {
-        if (distance >= track.getDistance()) {
-            return true;
-        }else {
-            return false;
-        }
+    public Robot(String name, int distance, int height) {
+        this.name = name;
+        this.distance = distance;
+        this.height = height;
     }
 
     @Override
-    public boolean doJump(int height) {
-        if(height >= wall.getHeight()) {
-            return true;
-        }else {
-            return false;
-        }
+    public boolean doRun(int trackDistance) {
+        return distance >= trackDistance;
+    }
+
+    @Override
+    public boolean doJump(int wallHeight) {
+        return height >= wallHeight;
     }
 }

@@ -5,7 +5,7 @@ import LevelTwo.Lesson2_1.Lets.Lets;
 
 public class Wall implements Lets {
 
-    private int height = 1;
+    private int height;
 
     public int getHeight() {
         return height;

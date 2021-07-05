@@ -5,7 +5,7 @@ import LevelTwo.Lesson2_1.Entity.Entities;
 
 public class RunningTrack implements Lets {
 
-    private int distance = 300;
+    private int distance;
 
     public int getDistance() {
         return distance;

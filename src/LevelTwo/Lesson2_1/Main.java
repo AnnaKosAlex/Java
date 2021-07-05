@@ -15,29 +15,29 @@ public class Main {
         Wall wall = new Wall();
 
         Entities[] players = new Entities[5];
-        players[0] = new Human("Pavel");
-        players[1] = new Human("Ludmila");
-        players[2] = new Cat("Lora");
-        players[3] = new Robot("R2D2");
-        players[4] = new Robot("Eva");
+        players[0] = new Human("Pavel", 500, 2);
+        players[1] = new Human("Ludmila", 600, 3);
+        players[2] = new Cat("Lora", 200, 4);
+        players[3] = new Robot("R2D2", 100, 1);
+        players[4] = new Robot("Eva", 150, 1);
 
         Lets[] lets = new Lets[2];
-        lets[0] = new RunningTrack(500);
+        lets[0] = new RunningTrack(300);
         lets[1] = new Wall(2);
 
 
         for (Entities player : players) {
             for (Lets let : lets) {
                 if (let instanceof RunningTrack) {
-                    if(player.doRun(500)){
-                        System.out.println("You run over " + track.getDistance() + "m!");
+                    if(track.overcome(player)){
+                        System.out.println("You run over " + ((RunningTrack) let).getDistance() + "m!");
                     }else {
                         System.out.println("This is too long distance for you! You out of the game!");
                         break;
                     }
                 } else if (let instanceof Wall) {
-                    if(player.doJump(0)){
-                        System.out.println("You jump over " + wall.getHeight() + "m!");
+                    if(wall.overcome(player)){
+                        System.out.println("You jump over " + ((Wall) let).getHeight() + "m!");
                     }else{
                         System.out.println("This is too height for you! You out of the game!");
                         break;
