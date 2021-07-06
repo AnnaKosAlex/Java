@@ -17,9 +17,9 @@ public class Robot implements Competitor {
     @Override
     public void jump(int height) {
         if (maxJumpHeight >= height) {
-            System.out.println(name + " перепрыгнул препятствие");
+            System.out.println(name + " jumped over the wall.");
         } else {
-            System.out.println(name + " выбыл");
+            System.out.println(name + " is out");
             onDistance = false;
         }
     }
@@ -27,9 +27,9 @@ public class Robot implements Competitor {
     @Override
     public void run(int distance) {
         if (maxRunDistance >= distance) {
-            System.out.println(name + " пробежал дистанцию.");
+            System.out.println(name + " run the distance.");
         } else {
-            System.out.println(name + " выбыл");
+            System.out.println(name + " is out");
             onDistance = false;
         }
     }
