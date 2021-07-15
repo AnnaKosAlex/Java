@@ -22,15 +22,10 @@ public class PhoneBook {
         String res = "";
 
         if (phoneClient.containsKey(s)) {
-            res = "Телефон клиента " + s + ": " +
-                    phoneClient.get(s).toString()
-                            .replace("[", "")
-                            .replace("]", "")
-                            .replace(",", "")
-                            .trim();
+            res = "The telephone number of client " + s + ": " + "[" + phoneClient.get(s) + "]";
             System.out.println(res);
         } else {
-            res = "Такого клиента нет в справочнике";
+            res = "There is no client with this lastname.";
             System.out.println(res);
         }
 
