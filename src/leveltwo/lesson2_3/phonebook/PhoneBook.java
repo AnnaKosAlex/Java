@@ -3,7 +3,7 @@ package leveltwo.lesson2_3.phonebook;
 import java.util.*;
 
 public class PhoneBook {
-    
+
     public static void addingClients(Map<String, Integer> phoneClient) {
         phoneClient.put("Petrov", 4958965);
         phoneClient.put("Popov", 4959275);
@@ -17,7 +17,6 @@ public class PhoneBook {
         phoneClient.put("Ivanova", 4950386);
 
     }
-
 
     public static String findTheClient(Map<String, Integer> phoneClient, String s) {
         String res = "";
