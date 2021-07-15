@@ -3,10 +3,7 @@ package leveltwo.lesson2_3.phonebook;
 import java.util.*;
 
 public class PhoneBook {
-
-    Map<String, Integer> phoneClient = new HashMap<>();
-
-
+    
     public static void addingClients(Map<String, Integer> phoneClient) {
         phoneClient.put("Petrov", 4958965);
         phoneClient.put("Popov", 4959275);
