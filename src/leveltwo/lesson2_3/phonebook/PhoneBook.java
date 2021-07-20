@@ -4,28 +4,36 @@ import java.util.*;
 
 public class PhoneBook {
 
-    public static void addingClients(Map<String, Integer> phoneClient) {
-        phoneClient.put("Petrov", 4958965);
-        phoneClient.put("Popov", 4959275);
-        phoneClient.put("Pavlov", 4953957);
-        phoneClient.put("Petrova", 4952947);
-        phoneClient.put("Kanceva", 4954937);
-        phoneClient.put("Lososev", 4952123);
-        phoneClient.put("Kostyuk", 4952936);
-        phoneClient.put("Ryazancev", 4953945);
-        phoneClient.put("Ivanov", 4951161);
-        phoneClient.put("Ivanova", 4950386);
+    private Map<String, Set<Integer>> clients = new HashMap<>();
+
+    public void addingClients(String lastName, int number) {
+        Set<Integer> num = new HashSet<>();
+
+        if (this.clients.containsKey(lastName)) {
+            num = this.clients.get(lastName);
+            num.add(number);
+            this.clients.put(lastName, num);
+        } else {
+            num.add(number);
+            this.clients.put(lastName, num);
+        }
+        System.out.println("We add " + lastName + ".");
 
     }
 
-    public static String findTheClient(Map<String, Integer> phoneClient, String s) {
+    public String findTheClient(String lastName) {
         String res = "";
 
-        if (phoneClient.containsKey(s)) {
-            res = "The telephone number of client " + s + ": " + "[" + phoneClient.get(s) + "]";
+        if (this.clients.containsKey(lastName)) {
+            res = "Telephone number of client " + lastName + ": " +
+                    this.clients.get(lastName).toString()
+                            .replace("[","")
+                            .replace("]", "")
+                            .replace(",", "")
+                            .trim();
             System.out.println(res);
         } else {
-            res = "There is no client with this lastname.";
+            res = "There is not client with this lastname in phonebook.";
             System.out.println(res);
         }
 

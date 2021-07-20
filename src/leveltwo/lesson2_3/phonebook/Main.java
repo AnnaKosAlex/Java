@@ -1,16 +1,20 @@
 package leveltwo.lesson2_3.phonebook;
 
-import java.util.HashMap;
-import java.util.Map;
 
 public class Main {
     public static void main(String[] args) {
-        Map<String, Integer> phoneClients = new HashMap<>();
+        PhoneBook phoneBook = new PhoneBook();
 
-        String s = "Popov";
+        int number = (int) (Math.random()*(600000+1)) + 2000000;
 
-        PhoneBook.addingClients(phoneClients);
-        PhoneBook.findTheClient(phoneClients,s);
+        String lastName1 = "Petrov";
+        String lastName2 = "Popov";
+
+
+        phoneBook.addingClients(lastName1, number);
+        phoneBook.findTheClient(lastName1);
+        phoneBook.addingClients(lastName2, number);
+        phoneBook.findTheClient(lastName2);
     }
 
 }
