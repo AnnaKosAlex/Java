@@ -5,6 +5,8 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.Optional;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class ClientHandler {
 
@@ -12,6 +14,7 @@ public class ClientHandler {
     private DataInputStream in;
     private DataOutputStream out;
     private String name;
+    private boolean isAuthentificated;
 
     public ClientHandler(Server server, Socket socket) {
         try {
@@ -111,6 +114,21 @@ public class ClientHandler {
                 break;
             }
             server.broadcastMessage(inboundMessage);
+        }
+    }
+
+    public void terminatingIfNoAuthentication(Socket socket){
+        TimerTask terminateConnection = new TimerTask() {
+            @Override
+            public void run(){
+                sendMessage("You didn't authorise in 120 sec.\n Your connection is interrupted");
+                closeConnection(socket);
+            }
+        };
+
+        Timer terminatingTimer = new Timer();
+        if(isAuthentificated == false) {
+            terminatingTimer.schedule(terminateConnection, 120000);
         }
     }
 
