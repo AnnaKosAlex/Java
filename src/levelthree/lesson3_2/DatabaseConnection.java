@@ -8,7 +8,7 @@ public class DatabaseConnection {
     public static Connection getConnection() {
         try {
             /**
-             DriverManager.getConnection("jdbc:mysql://localhost:3306/STUDENTS?user=root&password=root");
+             DriverManager.getConnection("jdbc:mysql://localhost:3306/STUDENTS?user=Anna&password=root");
              */
 
             return DriverManager.getConnection(
