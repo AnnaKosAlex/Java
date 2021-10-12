@@ -7,35 +7,47 @@ import java.net.Socket;
 import java.util.Optional;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class ClientHandler {
 
     private Server server;
+    private Socket socket;
     private DataInputStream in;
     private DataOutputStream out;
     private String name;
     private boolean isAuthentificated;
 
+
     public ClientHandler(Server server, Socket socket) {
+
         try {
             this.server = server;
+            this.socket = socket;
             in = new DataInputStream(socket.getInputStream());
             out = new DataOutputStream(socket.getOutputStream());
-
-            new Thread(() -> {
-                try {
-                    doAuthentication();
-                    listenMessages();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } finally {
-                    closeConnection(socket);
-                }
-            })
-                    .start();
+            CreateExecutorService();
         } catch (IOException e) {
             throw new RuntimeException("Something went wrong during client establishing...", e);
         }
+
+    }
+
+    private void CreateExecutorService() {
+        ExecutorService executor = Executors.newFixedThreadPool(1);
+        executor.submit(new Thread(() -> {
+            try {
+                doAuthentication();
+                listenMessages();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                closeConnection(socket);
+            }
+        }));
+
+        executor.shutdown();
     }
 
     private void closeConnection(Socket socket) {
@@ -117,17 +129,17 @@ public class ClientHandler {
         }
     }
 
-    public void terminatingIfNoAuthentication(Socket socket){
+    public void terminatingIfNoAuthentication(Socket socket) {
         TimerTask terminateConnection = new TimerTask() {
             @Override
-            public void run(){
+            public void run() {
                 sendMessage("You didn't authorise in 120 sec.\n Your connection is interrupted");
                 closeConnection(socket);
             }
         };
 
         Timer terminatingTimer = new Timer();
-        if(isAuthentificated == false) {
+        if (isAuthentificated == false) {
             terminatingTimer.schedule(terminateConnection, 120000);
         }
     }
