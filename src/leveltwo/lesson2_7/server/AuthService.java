@@ -32,7 +32,7 @@ public class AuthService {
                 .findFirst();
     }
 
-    static class Entry {
+    public static class Entry {
         String name;
         String login;
         String password;
@@ -50,7 +50,6 @@ public class AuthService {
         String getLogin() {
             return login;
         }
-
         String getPassword() {
             return password;
         }
@@ -68,6 +67,5 @@ public class AuthService {
             return Objects.hash(name, login, password);
         }
     }
-
 }
 

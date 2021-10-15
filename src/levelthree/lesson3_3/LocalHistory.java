@@ -69,15 +69,13 @@ public class LocalHistory {
             }
         }
 
-        if(chatHistoryList != null || chatHistoryList.size() > 0){
-            if(chatHistoryList.size() > 100){
-                for(int i = chatHistoryList.size() - 101; i < chatHistoryList.size() - 1; i++) {
-                    System.out.println(chatHistoryList.get(i));
-                }
-            } else {
-                for(int i = 0; i < chatHistoryList.size(); i++) {
-                    System.out.println(chatHistoryList.get(i));
-                }
+        if(chatHistoryList.size() > 100){
+            for(int i = chatHistoryList.size() - 101; i < chatHistoryList.size() - 1; i++) {
+                System.out.println(chatHistoryList.get(i));
+            }
+        } else {
+            for (String s : chatHistoryList) {
+                System.out.println(s);
             }
         }
     }

@@ -1,5 +1,8 @@
 package leveltwo.lesson2_7.server;
 
+import levelthree.lesson3_2.User;
+import levelthree.lesson3_2.UserService;
+
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
